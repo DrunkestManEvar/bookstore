@@ -1,0 +1,7 @@
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 25rem;
+  gap: 3rem;
+  margin: 7rem 0;
+}
