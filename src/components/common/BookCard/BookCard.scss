@@ -1,7 +1,7 @@
 .book-desc {
   position: relative;
   font-size: 2rem;
-  width: 30rem;
+  width: 25rem;
   height: 30rem;
   margin: 1rem auto;
 
@@ -11,8 +11,8 @@
 
   &__rotate-icon {
     position: absolute;
-    right: 1rem;
-    top: 1rem;
+    right: 0.5rem;
+    top: 0.5rem;
   }
 
   &__side {
@@ -39,6 +39,10 @@
       justify-content: space-evenly;
       background: linear-gradient(to right bottom, #393232, #1b1717);
       color: #fff;
+
+      p {
+        text-align: center;
+      }
     }
   }
 

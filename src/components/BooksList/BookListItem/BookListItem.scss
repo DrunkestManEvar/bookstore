@@ -22,7 +22,9 @@
   }
 
   &__book-img {
-    max-height: 20rem;
+    height: 20rem;
+    width: 13.5rem;
+    object-fit: scale-down;
   }
 
   &__book-info-overlay {

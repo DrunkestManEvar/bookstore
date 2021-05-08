@@ -14,7 +14,11 @@ const Navbar = () => {
         <ul className="navbar__navlinks-list">
           {navlinks.map((navlink, index) => (
             <li key={index} className="navbar__navlink">
-              <NavLink exact activeClassName="active" to={navlink.direction}>
+              <NavLink
+                exact={navlink.exact || false}
+                activeClassName="active"
+                to={navlink.direction}
+              >
                 {navlink.title}
               </NavLink>
             </li>

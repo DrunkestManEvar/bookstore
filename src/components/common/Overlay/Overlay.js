@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../../../context/appContext';
 
 const Overlay = ({ children }) => {
-  return <div className="overlay">{children}</div>;
+  const { isModalOpen } = useContext(AppContext);
+
+  const overlayClasses = ['overlay'];
+
+  if (isModalOpen) overlayClasses.push('show');
+
+  return <div className={overlayClasses.join(' ')}>{children}</div>;
 };
 
 export default Overlay;

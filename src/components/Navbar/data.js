@@ -1,5 +1,5 @@
 export const navlinks = [
-  { title: 'Home', direction: '/' },
-  { title: 'Random Book', direction: '/random-book/1' },
+  { title: 'Home', direction: '/', exact: true },
+  { title: 'Random Book', direction: '/books' },
   { title: 'About Us', direction: '/about' },
 ];

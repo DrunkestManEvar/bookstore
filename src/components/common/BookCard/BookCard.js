@@ -1,25 +1,58 @@
 import React from 'react';
+import BookCoverPlaceholder from '../BookCoverPlaceholder/BookCoverPlaceholder';
 import { MdCropRotate } from 'react-icons/md';
 
-const BookCard = () => {
+const BookCard = ({ book }) => {
+  const publishers = book.publishers?.map((publisher, index) => (
+    <span key={index}>{publisher}</span>
+  ));
+
+  let bookCover;
+
+  if (typeof book.coverId === 'number') {
+    bookCover = (
+      <img
+        src={`http://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`}
+        alt="Book cover"
+        className="book-desc__book-img"
+      />
+    );
+  } else if (typeof book.coverId === 'object') {
+    bookCover = (
+      <img
+        src={`http://covers.openlibrary.org/b/id/${book.coverId[0]}-M.jpg`}
+        alt="Book cover"
+        className="book-desc__book-img"
+      />
+    );
+  }
+
+  if (!book.coverId) {
+    bookCover = <BookCoverPlaceholder large />;
+  }
+
+  const showBookInfo = bookData => bookData ?? 'Not Found';
+
   return (
     <article className="book-desc">
       <div className="book-desc__side book-desc__side_front">
         <MdCropRotate className="book-desc__rotate-icon" />
-        <img
-          src="https://cdn.shopify.com/s/files/1/0014/3723/7305/files/cta-img.png?v=1596028718"
-          alt="Book"
-          className="book-desc__book-img"
-        />
+        {bookCover}
       </div>
 
       <div className="book-desc__side book-desc__side_back">
-        <p className="book-desc__book-author">Author: Harrison Wells</p>
-        <p className="book-desc__book-release-date">
-          Release Date: 25 April 2021
+        <p className="book-desc__book-author">
+          Author: {showBookInfo(book.author)}
         </p>
-        <p className="book-desc__book-publisher">Publisher: Fanfics.com</p>
-        <p className="book-desc__book-ISBN">ISBN: 1249850345</p>
+        <p className="book-desc__book-release-date">
+          Release Date: {showBookInfo(book.publish_date)}
+        </p>
+        <p className="book-desc__book-publisher">
+          Publishers: {showBookInfo(publishers)}
+        </p>
+        <p className="book-desc__book-ISBN">
+          ISBN: {showBookInfo(book.isbn_10 ?? book.isbn_13)}
+        </p>
       </div>
     </article>
   );
