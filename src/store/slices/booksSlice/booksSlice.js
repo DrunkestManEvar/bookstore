@@ -12,7 +12,7 @@ export const fetchBooks = createAsyncThunk(
     const bookTitleQuery = bookTitle.replace(/ /g, '_');
 
     const response = await fetch(
-      `http://openlibrary.org/search.json?title=${bookTitleQuery}`
+      `https://infinite-plains-87110.herokuapp.com/http://openlibrary.org/search.json?title=${bookTitleQuery}`
     );
     const data = await response.json();
     return data.docs;
