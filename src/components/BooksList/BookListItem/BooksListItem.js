@@ -42,7 +42,7 @@ const BooksListItem = ({ book }) => {
       <article className="books-list-item">
         <div className="books-list-item__book-info-overlay">
           {bookCover}
-          <div>
+          <div className="books-list-item__book-info-container">
             <h4 className="books-list-item__book-title">{title}</h4>
             <p className="books-list-item__book-author">{authorName}</p>
           </div>
@@ -50,7 +50,7 @@ const BooksListItem = ({ book }) => {
 
         <Button
           classesArray={['books-list-item__btn']}
-          showBookModal={showBookModal}
+          handleClick={showBookModal}
         >
           Learn more
         </Button>

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import BooksListItem from './BookListItem/BooksListItem';
+import PaginationButtonsContainer from '../common/PaginationButtonsContainer/PaginationButtonsContainer';
 import Spinner from '../common/Spinner/Spinner';
 
 const BooksList = () => {
   const books = useSelector(state => state.books.books);
   const booksStatus = useSelector(state => state.books.status);
+  const [booksPage, setBooksPage] = useState(1);
 
   let content;
 
@@ -22,7 +24,9 @@ const BooksList = () => {
     content = <h3>Enter a book title to find books!</h3>;
 
   if (books.length) {
-    content = books.map((book, index) => {
+    const pageFirstBook = (booksPage - 1) * 10;
+    const pageLastBook = booksPage * 10;
+    content = books.slice(pageFirstBook, pageLastBook).map((book, index) => {
       const {
         title,
         author_name: author,
@@ -41,7 +45,19 @@ const BooksList = () => {
     });
   }
 
-  return <section className="book-list">{content}</section>;
+  return (
+    <>
+      <section className="book-list">{content}</section>
+      {books.length ? (
+        <PaginationButtonsContainer
+          numberOfEntriesLeft={books.length - booksPage * 10}
+          currentPage={booksPage}
+          goForward={() => setBooksPage(booksPage + 1)}
+          goBack={() => setBooksPage(booksPage - 1)}
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default BooksList;

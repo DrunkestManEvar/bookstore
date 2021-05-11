@@ -8,6 +8,11 @@
   font-family: inherit;
   cursor: pointer;
 
+  &:hover {
+    background-color: #222;
+    color: #fff;
+  }
+
   &_primary {
     padding: 0.5rem 2rem;
     border-radius: 0;

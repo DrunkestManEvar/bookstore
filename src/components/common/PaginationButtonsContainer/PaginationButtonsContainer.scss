@@ -1,0 +1,8 @@
+.pagination-btns-container {
+  display: flex;
+  justify-content: space-between;
+
+  &.first-page {
+    justify-content: flex-end;
+  }
+}
