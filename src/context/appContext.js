@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 
-const AppContext = React.createContext('hello');
+const AppContext = React.createContext(null);
 
 export const AppContextProvider = props => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [randomBookClicks, setRandomBookClicks] = useState(0);
 
   return (
-    <AppContext.Provider value={{ isModalOpen, setIsModalOpen }}>
+    <AppContext.Provider
+      value={{
+        isModalOpen,
+        setIsModalOpen,
+        randomBookClicks,
+        setRandomBookClicks,
+      }}
+    >
       {props.children}
     </AppContext.Provider>
   );

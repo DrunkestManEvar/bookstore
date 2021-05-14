@@ -33,7 +33,7 @@ const Modal = ({ modalType }) => {
       <div className="modal">
         <Button
           classesArray={['btn_close']}
-          showBookModal={() => setIsModalOpen(false)}
+          handleClick={() => setIsModalOpen(false)}
         >
           <IoMdClose />
         </Button>

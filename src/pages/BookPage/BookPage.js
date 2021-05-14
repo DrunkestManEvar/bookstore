@@ -1,29 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchCurrentBook } from '../../store/slices/currentBookSlice/currentBookSlice';
+import AppContext from '../../context/appContext';
 import BookCard from '../../components/common/BookCard/BookCard';
 import Spinner from '../../components/common/Spinner/Spinner';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
 const BookPage = props => {
+  const { randomBookClicks } = useContext(AppContext);
+  console.log(randomBookClicks);
   const history = useHistory();
-  const bookKey = props.match.url;
-  console.log(bookKey);
+  const bookKey = props.location.pathname;
   const book = useSelector(state => state.currentBook.book);
   const bookLoading = useSelector(state => state.currentBook.loading);
   const bookError = useSelector(state => state.currentBook.error);
   const dispatch = useDispatch();
 
-  const generateRandomBookKey = () =>
-    `OL${Math.floor(Math.random() * 10000000)}M`;
+  const generateRandomBookKey = () => {
+    return `OL${Math.floor(Math.random() * 10000000)}M`;
+  };
 
   useEffect(() => {
     history.push(`/books/${generateRandomBookKey()}`);
-  }, [history]);
+  }, [randomBookClicks, history]);
 
   useEffect(() => {
-    dispatch(fetchCurrentBook(bookKey));
+    const book = { bookKey };
+    dispatch(fetchCurrentBook(book));
   }, [history, dispatch, bookKey]);
 
   if (bookLoading) return <Spinner />;

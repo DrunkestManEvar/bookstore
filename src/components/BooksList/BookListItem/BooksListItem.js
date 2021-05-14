@@ -29,11 +29,15 @@ const BooksListItem = ({ book }) => {
     );
   }
 
-  if (!coverId || coverId < 0)
-    bookCover = <BookCoverPlaceholder title={title} author={authorName} />;
+  if (!coverId || coverId < 0) bookCover = <BookCoverPlaceholder />;
 
   const showBookModal = () => {
-    dispatch(fetchCurrentBook(bookKey));
+    const book = {
+      bookKey,
+      author,
+    };
+
+    dispatch(fetchCurrentBook(book));
     setIsModalOpen(true);
   };
 
