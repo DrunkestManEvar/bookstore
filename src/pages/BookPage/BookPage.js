@@ -9,7 +9,6 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 
 const BookPage = props => {
   const { randomBookClicks } = useContext(AppContext);
-  console.log(randomBookClicks);
   const history = useHistory();
   const bookKey = props.location.pathname;
   const book = useSelector(state => state.currentBook.book);
