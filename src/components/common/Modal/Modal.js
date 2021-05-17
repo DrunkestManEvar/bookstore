@@ -19,7 +19,7 @@ const Modal = ({ modalType }) => {
 
   if (bookLoading) bookContent = <Spinner />;
   else if (bookError) bookContent = <ErrorPage />;
-  else bookContent = <BookCard book={book} />;
+  else bookContent = <BookCard book={book} showTitle />;
 
   const modalTypes = {
     notification: modalType.msg,

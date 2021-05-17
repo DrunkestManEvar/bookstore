@@ -2,7 +2,7 @@ import React from 'react';
 import BookCoverPlaceholder from '../BookCoverPlaceholder/BookCoverPlaceholder';
 import { MdCropRotate } from 'react-icons/md';
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, showTitle }) => {
   const publishers = book.publishers?.map((publisher, index) => (
     <span key={index}>{publisher}</span>
   ));
@@ -41,6 +41,11 @@ const BookCard = ({ book }) => {
       </div>
 
       <div className="book-desc__side book-desc__side_back">
+        {showTitle && (
+          <p className="book-desc__book-title">
+            Title: {showBookInfo(book.title)}
+          </p>
+        )}
         <p className="book-desc__book-author">
           Author: {showBookInfo(book.author)}
         </p>
